@@ -49,6 +49,8 @@ RUN apt-get update && \
         jq \
         gosu \
         locales \
+        libpq5 \
+        libsqlite3-0 \
     && \
     rm -rf /var/lib/apt/lists/* && \
     # Setup common locales.
