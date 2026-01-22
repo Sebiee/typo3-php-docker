@@ -13,6 +13,8 @@ RUN savedAptMark="$(apt-mark showmanual)" && \
         libicu-dev \
         libyaml-dev \
         libzip-dev \
+        libpq-dev \
+        libsqlite3-dev \
     && \
     rm -rf /var/lib/apt/lists/* && \
     export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" && \
@@ -25,7 +27,7 @@ RUN savedAptMark="$(apt-mark showmanual)" && \
         --with-avif \
     && \
     docker-php-ext-configure intl --enable-intl && \
-    docker-php-ext-install gd mysqli opcache zip intl pdo pdo_mysql exif && \
+    docker-php-ext-install gd mysqli pgsql opcache zip intl pdo pdo_mysql pdo_pgsql pdo_sqlite exif && \
     docker-php-ext-enable apcu yaml && \
     apt-mark auto '.*' > /dev/null && \
     apt-mark manual $savedAptMark && \
